@@ -1,0 +1,186 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SocialNetworkCard from "../components/SocialNetworkCard.astro";
+import { DP_LINKS, DIFERENTE_RAVE_LINKS } from "../services/Links.js";
+import DavidPrinceImg from "../../public/imgs/DavidPrinceDJ.png";
+import A_SPIRIT_OF_LIFE from "../../public/A SPIRIT OF LIFE.svg";
+---
+
+<Layout title="Links">
+  <main>
+    <div class="info">
+      <section class="section-info">
+        <div class="david-prince-info">
+          <h1>DAVID PRINCE DJ</h1>
+          <h3>
+            🎹 Productor de Música Electrónica & DJ
+            <img
+              width="20px"
+              style="border-radius: 2px;"
+              alt="Flag of Argentina"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/512px-Flag_of_Argentina.svg.png"
+            />
+          </h3>
+          <ul class="social-network-links">
+            {
+              DP_LINKS.map(({ socialNetwork, url, icon }) => {
+                return (
+                  <SocialNetworkCard
+                    title={socialNetwork}
+                    icon={icon}
+                    href={url}
+                  />
+                );
+              })
+            }
+          </ul>
+        </div>
+
+        <div class="diferente-rave-info">
+          <h1 style="color: #ffffff;" class="margin-bottom">
+            DIFERENTE RAVE - <span style="font-weight: 500; color: #00ffff"
+              >RADIO SHOW</span
+            >
+          </h1>
+          <div class="a-spirit-of-life-logo-container">
+            <img
+              src={A_SPIRIT_OF_LIFE}
+              alt="A Spirit Of Life Logo"
+              class="a-spirit-of-life-logo blur"
+            />
+            <img
+              src={A_SPIRIT_OF_LIFE}
+              alt="A Spirit Of Life Logo"
+              class="a-spirit-of-life-logo"
+            />
+          </div>
+          <ul class="social-network-links">
+            {
+              DIFERENTE_RAVE_LINKS.map(({ socialNetwork, url, icon }) => {
+                return (
+                  <SocialNetworkCard
+                    title={socialNetwork}
+                    icon={icon}
+                    href={url}
+                  />
+                );
+              })
+            }
+          </ul>
+        </div>
+      </section>
+    </div>
+    <img
+      src={DavidPrinceImg}
+      alt="fotografía de David Prince"
+      class="dp_image"
+    />
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: 100vw;
+    height: 100vh;
+    color: white;
+    background-color: #06021c;
+    background-image: url("../../public/bg/lines_001.svg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+  }
+
+  h1 {
+    font-size: 1.2em;
+    text-align: center;
+    font-weight: 800;
+    color: #00ffff;
+    animation: shadowOpacity 5s ease-in-out infinite;
+  }
+  h3 {
+    font-size: 1em;
+    text-align: center;
+    color: rgb(200, 200, 200);
+    margin-bottom: 10px;
+  }
+
+  .margin-bottom {
+    margin-bottom: 10px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    margin-bottom: 25px;
+  }
+
+  .social-network-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .diferente-rave-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .a-spirit-of-life-logo-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .a-spirit-of-life-logo {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+
+  .blur {
+    position: absolute;
+    opacity: 0.5;
+    animation: blurAnimation 5s ease-in-out infinite;
+  }
+
+  .dp_image {
+    height: 50%;
+    width: 320px;
+    object-fit: cover;
+    -webkit-mask-image: linear-gradient(black 50%, transparent 95%);
+    margin-bottom: 10px;
+  }
+
+  @keyframes blurAnimation {
+    0% {
+      filter: blur(0px);
+    }
+    50% {
+      filter: blur(10px);
+    }
+    100% {
+      filter: blur(0);
+    }
+  }
+
+  @keyframes shadowOpacity {
+    0% {
+      text-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
+    }
+    50% {
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0);
+    }
+    100% {
+      text-shadow: 0 0 30px rgba(0, 255, 255, 0.35);
+    }
+  }
+</style>

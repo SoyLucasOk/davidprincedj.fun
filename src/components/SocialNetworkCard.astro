@@ -1,0 +1,75 @@
+---
+export interface Props {
+	title: string;
+	icon: string;
+	href: string;
+}
+
+const { href, title, icon } = Astro.props;
+---
+
+<li class="link-card">
+	<span>{title}</span>
+	<a href={href} target="_blank">
+		<img
+			src={`../../public/icons/icon-${icon}.png`}
+			alt={`icono de ${title}`}
+		/>
+	</a>
+</li>
+<style>
+	.link-card {
+		width: 55px;
+		list-style: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		opacity: 0.75;
+		transition: all 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+		position: relative;
+		padding: 10px;
+	}
+
+	.link-card > span {
+		position: absolute;
+		background-color: #c7c3cc;
+		color: #050014;
+		font-weight: 800;
+		font-size: 0.8em;
+		padding: 3px 10px;
+		border-radius: 3px;
+		top: calc(50px + 15px);
+		display: flex;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	.link-card > span::after {
+		content: "";
+		position: absolute;
+		top: -4px;
+		border-bottom: 5px solid #c7c3cc;
+		border-left: 10px solid transparent;
+		border-right: 10px solid transparent;
+	}
+
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	.link-card:is(:hover, :focus-within) {
+		transform: scale(1.05);
+		opacity: 1;
+		filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+	}
+
+	.link-card:is(:hover, :focus-within) > span {
+		opacity: 1;
+	}
+</style>
