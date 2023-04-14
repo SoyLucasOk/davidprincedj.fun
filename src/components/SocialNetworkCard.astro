@@ -11,10 +11,7 @@ const { href, title, icon } = Astro.props;
 <li class="link-card">
 	<span>{title}</span>
 	<a href={href} target="_blank">
-		<img
-			src={`../../public/icons/icon-${icon}.png`}
-			alt={`icono de ${title}`}
-		/>
+		<img src={`../../public/icon-${icon}.png`} alt={`icono de ${title}`} />
 	</a>
 </li>
 <style>
