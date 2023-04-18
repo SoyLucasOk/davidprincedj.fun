@@ -1,0 +1,65 @@
+---
+import PlayIcon from "./PlayIcon.astro";
+
+export interface Props {
+  videoID: string;
+}
+
+const { videoID } = Astro.props;
+const miniaturaURL = `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLADWCUiPN6aU2t0lMpdzvf4dIVgHg`;
+---
+
+<li style={`background-image: url(${miniaturaURL})`}>
+  <a href={`https://www.youtube.com/watch?v=${videoID}`} target="_blank">
+    <svg viewBox="0 0 16 16">
+      <path
+        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+      ></path>
+    </svg>
+  </a>
+</li>
+<style>
+  li {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    background-size: cover;
+    background-position-y: center;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease-out;
+    cursor: pointer;
+  }
+
+  a {
+    background-image: linear-gradient(
+      0deg,
+      rgba(0, 255, 255, 0.3) 0%,
+      transparent 95%
+    );
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(100%);
+    transition: transform 0.2s ease-out;
+  }
+
+  svg {
+    width: 15%;
+    fill: white;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+  }
+
+  li:hover {
+    transform: scale(1.025);
+  }
+  li:hover > a {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+</style>

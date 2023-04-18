@@ -1,0 +1,178 @@
+---
+// import YoutubeVideo from "../components/YoutubeVideo.astro";
+import MiniaturaYoutubeVideo from "../components/MiniaturaYoutubeVideo.astro";
+import Layout from "../layouts/Layout.astro";
+import ASOL from "../../public/A SPIRIT OF LIFE.svg";
+import SocialNetworkCard from "../components/SocialNetworkCard.astro";
+import { VIDEOS } from "../services/Links";
+---
+
+<Layout
+  title="HOME"
+  description="Página principal del DJ y Productor Musical David Prince"
+>
+  <main>
+    <header>
+      <img src={ASOL} alt="A Spirit Of Life Logo" />
+    </header>
+    <section class="diferente-rave-info">
+      <h1>≠ DIFERENTE RAVE<br /><span>RADIO SHOW</span></h1>
+      <h2>
+        Disfruta de una hora llena de los mejores ritmos junto a
+        <a href="https://www.instagram.com/davidprincedj/" target="_blank"
+          >David Prince</a
+        >, quien te llevara en un viaje sonoro lleno de energía y vibraciones
+        positivas gracias a una selección única de música electrónica.
+      </h2>
+      <a href="#videos"
+        ><h3>
+          RADIOS SHOWS <svg width="16" height="16" viewBox="0 0 16 16">
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+            ></path>
+          </svg>
+        </h3></a
+      >
+    </section>
+    <section class="diferente-rave-videos" id="videos">
+      <ul>
+        {VIDEOS.map((video) => <MiniaturaYoutubeVideo videoID={video} />)}
+      </ul>
+    </section>
+  </main>
+</Layout>
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  header {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    grid-template-columns: repeat(6, 1fr);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  img {
+    width: min(80%, 18rem);
+    /* height: 60%; */
+    grid-column: span 2;
+    /* background-color: red; */
+    cursor: pointer;
+    transition: filter 0.25s ease-out;
+    user-select: none;
+  }
+
+  img:hover {
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+  }
+
+  .diferente-rave-info {
+    /* height: 350px; */
+    width: 80%;
+    margin: 5rem 0 2rem 0;
+    color: #fff;
+  }
+
+  h1 {
+    color: white;
+    font-size: 3em;
+    font-weight: 600;
+    line-height: 100%;
+  }
+
+  h1 span {
+    font-weight: 800;
+    color: #00ffff;
+  }
+
+  h2 {
+    margin-top: 2rem;
+    font-weight: 500;
+    color: #f0f0f0;
+  }
+
+  h2 > a {
+    text-decoration: none;
+    color: #00ffff;
+    font-weight: 700;
+    transition: text-shadow 0.25s ease-in;
+  }
+
+  h2 > a:hover {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.75);
+  }
+
+  h3 {
+    margin-top: 7.5rem;
+    background-color: #00ffff;
+    padding: 1rem 4rem 1rem 2rem;
+    display: inline-block;
+    border-radius: 5px;
+    color: black;
+    position: relative;
+    font-weight: 800;
+    transition: box-shadow 0.25s ease-in;
+  }
+
+  h3 > svg {
+    fill: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 1rem;
+  }
+
+  h3:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+
+  .diferente-rave-info::before {
+    content: "";
+    background-image: url("https://image.lexica.art/full_jpg/037cafcc-47ed-4fa3-a34d-099d0e4e3bdf");
+    background-size: cover;
+    background-position-y: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.25;
+    filter: blur(25px);
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(black 50%, transparent 95%);
+  }
+
+  .diferente-rave-videos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: min(1%, 1rem) min(1%, 2rem);
+    margin: 1rem 0;
+  }
+
+  ul {
+    width: 80%;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, calc(10rem * 1.777778 + 1rem)), 1fr)
+    );
+    justify-items: center;
+    align-items: center;
+  }
+</style>

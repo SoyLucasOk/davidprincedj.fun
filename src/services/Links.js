@@ -43,3 +43,14 @@ export const DIFERENTE_RAVE_LINKS = [
     icon: 'dr-facebook'
   }
 ]
+
+export const VIDEOS = [
+  'nIht_eGAaH4',
+  'KIb9sG1TvC8',
+  'nIht_eGAaH4',
+  'KIb9sG1TvC8',
+  'nIht_eGAaH4',
+  'KIb9sG1TvC8',
+  'nIht_eGAaH4',
+  'KIb9sG1TvC8'
+]
