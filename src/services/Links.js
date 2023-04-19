@@ -46,11 +46,5 @@ export const DIFERENTE_RAVE_LINKS = [
 
 export const VIDEOS = [
   'nIht_eGAaH4',
-  'KIb9sG1TvC8',
-  'nIht_eGAaH4',
-  'KIb9sG1TvC8',
-  'nIht_eGAaH4',
-  'KIb9sG1TvC8',
-  'nIht_eGAaH4',
   'KIb9sG1TvC8'
 ]
