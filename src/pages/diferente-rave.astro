@@ -3,7 +3,6 @@
 import MiniaturaYoutubeVideo from "../components/MiniaturaYoutubeVideo.astro";
 import Layout from "../layouts/Layout.astro";
 import ASOL from "../../public/A SPIRIT OF LIFE.svg";
-import SocialNetworkCard from "../components/SocialNetworkCard.astro";
 import { VIDEOS } from "../services/Links";
 ---
 
@@ -36,7 +35,16 @@ import { VIDEOS } from "../services/Links";
     </section>
     <section class="diferente-rave-videos" id="videos">
       <ul>
-        {VIDEOS.map((video) => <MiniaturaYoutubeVideo videoID={video} />)}
+        {
+          VIDEOS.map(({ episode, emitted, date, videoID }) => (
+            <MiniaturaYoutubeVideo
+              episode={episode}
+              emitted={emitted}
+              date={date}
+              videoID={videoID}
+            />
+          ))
+        }
       </ul>
     </section>
   </main>
@@ -50,6 +58,7 @@ import { VIDEOS } from "../services/Links";
   }
 
   header {
+    width: 100%;
     height: 80px;
     display: flex;
     justify-content: center;

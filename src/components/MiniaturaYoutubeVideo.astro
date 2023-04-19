@@ -2,22 +2,42 @@
 import PlayIcon from "./PlayIcon.astro";
 
 export interface Props {
+  episode: number;
+  emitted: boolean;
+  date: string;
   videoID: string;
 }
 
-const { videoID } = Astro.props;
+const { episode, emitted, date, videoID } = Astro.props;
 const miniaturaURL = `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLADWCUiPN6aU2t0lMpdzvf4dIVgHg`;
+const defaultMiniaturaURL =
+  "https://i.ytimg.com/vi/nIht_eGAaH4/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB2i1S59njuc4Wkug_DL35hp6naYg";
 ---
 
-<li style={`background-image: url(${miniaturaURL})`}>
-  <a href={`https://www.youtube.com/watch?v=${videoID}`} target="_blank">
-    <svg viewBox="0 0 16 16">
-      <path
-        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
-      ></path>
-    </svg>
-  </a>
-</li>
+{
+  emitted ? (
+    <li style={`background-image: url(${miniaturaURL})`}>
+      <a href={`https://www.youtube.com/watch?v=${videoID}`} target="_blank">
+        <svg viewBox="0 0 16 16">
+          <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+        </svg>
+      </a>
+    </li>
+  ) : (
+    <li
+      style={`background-image: url(${defaultMiniaturaURL});`}
+      class="opacity"
+    >
+      <span>{date}</span>
+      <a href="https://www.youtube.com/@DiferenteRave." target="_blank">
+        <svg viewBox="0 0 16 16">
+          <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+        </svg>
+      </a>
+    </li>
+  )
+}
+
 <style>
   li {
     width: 100%;
@@ -30,6 +50,35 @@ const miniaturaURL = `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg?sqp=-oaymw
     overflow: hidden;
     transition: transform 0.25s ease-out;
     cursor: pointer;
+  }
+
+  li.opacity::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.7;
+  }
+
+  span {
+    color: #000;
+    font-weight: 900;
+    font-size: 1.1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00ffff;
+    width: 50%;
+    height: 25%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
   }
 
   a {
@@ -51,7 +100,7 @@ const miniaturaURL = `https://i.ytimg.com/vi/${videoID}/hqdefault.jpg?sqp=-oaymw
 
   svg {
     width: 15%;
-    fill: white;
+    fill: #fff;
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
   }
 

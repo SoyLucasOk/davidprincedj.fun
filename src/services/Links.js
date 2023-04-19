@@ -45,6 +45,22 @@ export const DIFERENTE_RAVE_LINKS = [
 ]
 
 export const VIDEOS = [
-  'nIht_eGAaH4',
-  'KIb9sG1TvC8'
+  {
+    episode: 1,
+    emitted: true,
+    date: '03/03/2023',
+    videoID: 'nIht_eGAaH4'
+  },
+  {
+    episode: 2,
+    emitted: true,
+    date: '07/04/2023',
+    videoID: 'KIb9sG1TvC8'
+  },
+  {
+    episode: 3,
+    emitted: false,
+    date: '05/05/2023',
+    videoID: undefined
+  }
 ]
