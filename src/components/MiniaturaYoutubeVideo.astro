@@ -28,7 +28,7 @@ const defaultMiniaturaURL =
       style={`background-image: url(${defaultMiniaturaURL});`}
       class="opacity"
     >
-      <span>{date}</span>
+      <span id="counter">00D:00H:00M:00S</span>
       <a href="https://www.youtube.com/@DiferenteRave." target="_blank">
         <svg viewBox="0 0 16 16">
           <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
@@ -65,12 +65,12 @@ const defaultMiniaturaURL =
 
   span {
     color: #000;
-    font-weight: 900;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 0.8 rem;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) skewY(-5deg);
     background-color: #00ffff;
     width: 50%;
     height: 25%;
@@ -112,3 +112,10 @@ const defaultMiniaturaURL =
     transform: translateY(0%);
   }
 </style>
+
+<script>
+  import { countDown } from "../services/countdown";
+  const counter = document.getElementById("counter");
+
+  countDown("May 05 2023 18:00:00 GMT-0300", counter);
+</script>
