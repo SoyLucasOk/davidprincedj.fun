@@ -1,6 +1,4 @@
 ---
-import PlayIcon from "./PlayIcon.astro";
-
 export interface Props {
   episode: number;
   emitted: boolean;
@@ -16,7 +14,8 @@ const defaultMiniaturaURL =
 
 {
   emitted ? (
-    <li style={`background-image: url(${miniaturaURL})`}>
+    <li>
+      <div style={`background-image: url(${miniaturaURL})`} id="bg" />
       <a href={`https://www.youtube.com/watch?v=${videoID}`} target="_blank">
         <svg viewBox="0 0 16 16">
           <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
@@ -24,12 +23,13 @@ const defaultMiniaturaURL =
       </a>
     </li>
   ) : (
-    <li
-      style={`background-image: url(${defaultMiniaturaURL});`}
-      class="opacity"
-    >
+    <li>
+      <div
+        style={`background-image: url(${defaultMiniaturaURL});`}
+        class="opacity"
+      />
       <span id="counter">00D:00H:00M:00S</span>
-      <a href="https://www.youtube.com/@DiferenteRave." target="_blank">
+      <a href={`https://www.youtube.com/@DiferenteRave.`} target="_blank">
         <svg viewBox="0 0 16 16">
           <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
         </svg>
@@ -43,72 +43,89 @@ const defaultMiniaturaURL =
     width: 100%;
     height: 0;
     padding-bottom: 56.25%;
-    background-size: cover;
-    background-position-y: center;
+    background-color: black;
     border-radius: 5px;
     position: relative;
-    overflow: hidden;
     transition: transform 0.25s ease-out;
-    cursor: pointer;
+    overflow: hidden;
   }
-
-  li.opacity::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #000;
-    opacity: 0.7;
+  div {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
   }
 
   span {
-    color: #000;
-    font-weight: 700;
-    font-size: 0.8 rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) skewY(-5deg);
-    background-color: #00ffff;
-    width: 50%;
+    width: 55%;
     height: 25%;
+    background-color: #00ffff;
     border-radius: 5px;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) skewY(-5deg);
+    font-weight: 800;
+    font-size: 0;
   }
 
   a {
+    width: 100%;
+    aspect-ratio: 16/9;
     background-image: linear-gradient(
       0deg,
       rgba(0, 255, 255, 0.3) 0%,
       transparent 95%
     );
     position: absolute;
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 1;
-    transform: translateY(100%);
-    transition: transform 0.2s ease-out;
+    transition: transform 0.25s ease-out;
   }
 
   svg {
-    width: 15%;
+    height: 30%;
     fill: #fff;
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+    transform: translateY(100%);
+    transition: transform 0.25s ease-out 0.1s;
   }
 
-  li:hover {
+  .opacity {
+    opacity: 0.25;
+  }
+
+  /* HOVER */
+
+  @media (hover: hover) {
+    li:hover {
+      transform: scale(1.025);
+    }
+
+    li:hover > a {
+      transform: translateY(-100%);
+    }
+
+    li:hover > a > svg {
+      transform: translateY(0%);
+    }
+  }
+
+  /* ACTIVE */
+
+  li:active {
     transform: scale(1.025);
   }
-  li:hover > a {
-    opacity: 1;
+
+  li:active > a {
+    transform: translateY(-100%);
+  }
+
+  li:active > a > svg {
     transform: translateY(0%);
   }
 </style>
@@ -116,6 +133,17 @@ const defaultMiniaturaURL =
 <script>
   import { countDown } from "../services/countdown";
   const counter = document.getElementById("counter");
+  const main = counter.parentElement;
+
+  const width = main.clientWidth;
+  const fontSize = (5.4 / 100) * width;
+  counter.style.fontSize = `${fontSize}px`;
+
+  window.addEventListener("resize", () => {
+    const width = main.clientWidth;
+    const fontSize = (5.4 / 100) * width;
+    counter.style.fontSize = `${fontSize}px`;
+  });
 
   countDown("May 05 2023 18:00:00 GMT-0300", counter);
 </script>
