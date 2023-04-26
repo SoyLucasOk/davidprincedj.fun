@@ -3,12 +3,13 @@
 import MiniaturaYoutubeVideo from "../components/MiniaturaYoutubeVideo.astro";
 import Layout from "../layouts/Layout.astro";
 import ASOL from "../../public/A SPIRIT OF LIFE.svg";
-import { VIDEOS } from "../services/Links";
+import { DIFERENTE_RAVE_LINKS, VIDEOS } from "../services/Links";
+import SocialNetworkCard from "../components/SocialNetworkCard.astro";
 ---
 
 <Layout
   title="Diferente Rave"
-  description="Disfruta de una hora llena de los mejores ritmos junto a David Prince, quien te llevara en un viaje sonoro lleno de energía y vibraciones positivas gracias a una selección única de música electrónica."
+  description="Disfruta de una hora llena de los mejores ritmos junto a David Prince, quien te llevará en un viaje sonoro lleno de energía y vibraciones positivas gracias a una selección única de música electrónica."
 >
   <main>
     <header>
@@ -19,10 +20,21 @@ import { VIDEOS } from "../services/Links";
       <h2>
         Disfruta de una hora llena de los mejores ritmos junto a
         <a href="https://www.instagram.com/davidprincedj/" target="_blank"
-          >David Prince</a
-        >, quien te llevara en un viaje sonoro lleno de energía y vibraciones
+          >@DavidPrinceDJ</a
+        >, quien te llevará en un viaje sonoro lleno de energía y vibraciones
         positivas gracias a una selección única de música electrónica.
       </h2>
+      <ul class="social-network-links">
+        {
+          DIFERENTE_RAVE_LINKS.map(({ socialNetwork, url, icon }) => (
+            <SocialNetworkCard
+              title={socialNetwork}
+              icon={`../icons/icon-${icon}.png`}
+              href={url}
+            />
+          ))
+        }
+      </ul>
       <a href="#videos"
         ><h3>
           EPISODIOS <svg width="16" height="16" viewBox="0 0 16 16">
@@ -34,7 +46,7 @@ import { VIDEOS } from "../services/Links";
       >
     </section>
     <section class="diferente-rave-videos" id="videos">
-      <ul>
+      <ul class="video-list">
         {
           VIDEOS.map(({ episode, emitted, date, videoID }) => (
             <MiniaturaYoutubeVideo
@@ -123,7 +135,7 @@ import { VIDEOS } from "../services/Links";
   }
 
   h3 {
-    margin-top: 7.5rem;
+    margin-top: 2.5rem;
     background-color: #00ffff;
     padding: 1rem 4rem 1rem 2rem;
     display: inline-block;
@@ -171,7 +183,7 @@ import { VIDEOS } from "../services/Links";
     margin: 1rem 0;
   }
 
-  ul {
+  ul.video-list {
     width: 80%;
     list-style: none;
     display: grid;
@@ -183,5 +195,13 @@ import { VIDEOS } from "../services/Links";
     );
     justify-items: center;
     align-items: center;
+  }
+
+  ul.social-network-links {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 0.5rem;
   }
 </style>
