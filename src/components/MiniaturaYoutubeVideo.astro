@@ -30,12 +30,21 @@ const defaultMiniaturaURL =
     </li>
   ) : (
     <li>
-      <a href={`https://www.youtube.com/@DiferenteRave.`} target="_blank">
+      <a
+        href={`https://www.youtube.com/${
+          videoID ? `watch?v=${videoID}` : "@DiferenteRave."
+        }`}
+        target="_blank"
+      >
         <div
-          style={`background-image: url(${defaultMiniaturaURL});`}
+          style={`background-image: url(${
+            videoID ? miniaturaURL : defaultMiniaturaURL
+          });`}
           class="bg opacity"
         />
-        <span id="counter">00D:00H:00M:00S</span>
+        <span id="counter" prop-date={date}>
+          00D:00H:00M:00S
+        </span>
         <div class="hover-animation">
           <svg viewBox="0 0 16 16">
             <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
@@ -135,6 +144,8 @@ const defaultMiniaturaURL =
   import { countDown } from "../services/countdown";
   const counter = document.getElementById("counter");
   const main = counter.parentElement.parentElement;
+  const opacityDiv = main.children[0].children[0];
+  const date = counter.getAttribute("prop-date");
 
   const width = main.clientWidth;
   const fontSize = (5.4 / 100) * width;
@@ -146,5 +157,10 @@ const defaultMiniaturaURL =
     counter.style.fontSize = `${fontSize}px`;
   });
 
-  countDown("May 05 2023 18:00:00 GMT-0300", counter);
+  function handleEndCounter() {
+    counter.remove();
+    opacityDiv.classList.remove("opacity");
+  }
+
+  countDown(date, counter, handleEndCounter);
 </script>
