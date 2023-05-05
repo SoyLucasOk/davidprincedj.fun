@@ -15,13 +15,14 @@ function getRemainTime (deadline) {
   }
 }
 
-export const countDown = (deadline, element) => {
+export const countDown = (deadline, element, callbackFunction = () => {}) => {
   const timerUpdate = setInterval(() => {
     const t = getRemainTime(deadline)
     element.innerHTML = `${t.remainDays}D:${t.remainHours}H:${t.remainMinutes}M:${t.remainSeconds}S`
 
     if (t.remainTime <= 1) {
       clearInterval(timerUpdate)
+      callbackFunction()
     }
   }, 1000)
 }
