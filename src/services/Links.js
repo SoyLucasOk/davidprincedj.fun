@@ -67,7 +67,7 @@ export const VIDEOS = [
     episode: 4,
     emitted: true,
     date: 'Jun 02 2023 18:00:00 GMT-0300',
-    videoID: '66XhrQfN4s'
+    videoID: '-66XhrQfN4s'
   },
   {
     episode: 5,
@@ -80,5 +80,11 @@ export const VIDEOS = [
     emitted: true,
     date: 'Ago 04 2023 18:00:00 GMT-0300',
     videoID: 'Oufo2hTAXJA'
+  },
+  {
+    episode: 7,
+    emitted: false,
+    date: 'Sep 01 2023 18:00:00 GMT-0300',
+    videoID: undefined
   }
 ]
