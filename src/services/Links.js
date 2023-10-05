@@ -91,6 +91,6 @@ export const VIDEOS = [
     episode: 8,
     emitted: false,
     date: 'Oct 06 2023 18:00:00 GMT-0300',
-    videoID: undefined
+    videoID: 'sYpkQqv-T2k'
   }
 ]
